@@ -102,8 +102,8 @@ schema.sql
 ### Demo <a name="Demo"></a>
 
 Movies showing sample sessions for Bamazon can be accessed at:
-* <a href="https://engjoserobles-gmail.tinytake.com/tt/MzcyNjQwNV8xMTM0MDg1NQ" target="_blank">bamazonCustomer.js</a>
-* <a href="https://engjoserobles-gmail.tinytake.com/tt/MzcyNjQwNV8xMTM0MDg1NQ" target="_blank"> bamazonManager.js </a>
+* <a href="https://engjoserobles-gmail.tinytake.com/tt/MzczMjc2M18xMTM2MTE5OQ" target="_blank">bamazonCustomer.js</a>
+* <a href="https://engjoserobles-gmail.tinytake.com/tt/MzczMjc4MV8xMTM2MTI5Mg" target="_blank"> bamazonManager.js </a>
 
 **NOTE**: 
 
