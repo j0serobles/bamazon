@@ -37,13 +37,13 @@ $ node bamazonSupervisor.js
 
   When the program starts, it shows a set of menu options:
 
-  View Products for Sale
+  - View Products for Sale
 
-  View Low Inventory
+  - View Low Inventory
 
-  Add to Inventory
+  - Add to Inventory
 
-  Add New Product
+  - Add New Product
 
   If a manager selects View Products for Sale, the app should list every available item: the item IDs, names, prices, and quantities.
 
@@ -53,7 +53,23 @@ $ node bamazonSupervisor.js
 
   If a manager selects Add New Product, it should allow the manager to add a completely new product to the store.
 
+**bamazonCustomer.js**
 
+Running this application will first display all of the items available for sale, showing the ids, names, and prices of products for sale.  The app then prompts users with two messages.
+
+The first asks them the ID of the product they would like to buy.
+The second message asks how many units of the product they would like to buy.
+Once the customer has placed the order, it checks if the store has enough of the product to meet the customer's request.  If not, the app logs a phrase like ```Insufficient quantity!```, and then prevent the order from going through.
+If the store does have enough of the product, it will fulfill the order: this means updating the SQL database to reflect the remaining quantity.  Once the update goes through, the app shows the customer the total cost of their purchase.
+
+**bamazonSupervisor.js**
+ Running this application will list a set of menu options:
+
+View Product Sales by Department
+
+Create New Department
+
+When a supervisor selects View Product Sales by Department, the app should display a summarized table in their terminal/bash window. Use the table below as a guide.
 
 ### File Structure <a name="FileStructure"></a>
 
