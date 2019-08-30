@@ -1,5 +1,6 @@
-var mysql = require("mysql");
+var mysql    = require("mysql");
 var inquirer = require('inquirer');
+var table    = require('table'); 
 
 var connection = mysql.createConnection({
   host: "localhost",
@@ -22,7 +23,7 @@ var connection = mysql.createConnection({
 // And call main function to prompt user.
 connection.connect(function(err) {
   if (err) throw err;
-  console.log("connected as id " + connection.threadId + "\n");
+  //console.log("connected as id " + connection.threadId + "\n");
   promptUser();
 });
 
@@ -65,17 +66,18 @@ inquirer.prompt ( confirm )
               //There is enough to fulfill order, update the quantity in stock. 
               console.log ("Fullfilling order...please wait.\n");
               query = connection.query(`UPDATE PRODUCTS `                         +
-                                       ` SET stock_qty = stock_qty - ${quantity}` +
+                                       ` SET stock_qty = (stock_qty - ${quantity}), ` +
+                                       ` product_sales = IFNULL(product_sales,0) + (${quantity} * price) ` +
                                        ` WHERE id = ${itemID}`,
                                          function (err, updateResult) {
                                            if (err) throw err;
                                            //Show order total to the customer.
-                                           console.log ("\n----------------------"); 
+                                           console.log ("\n* * * * * * * * * * * *"); 
                                            console.log ("Your Order is confirmed."); 
                                            console.log (`${quantity} ${res[0].product_name}`);
                                            var order_total = quantity * res[0].price;
                                            console.log (`Order Total = $ ${order_total.toFixed(2)}`); 
-                                           console.log ("----------------------\n"); 
+                                           console.log ("* * * * * * * * * * * *\n"); 
                                            promptUser();
                                          }
                                        );
@@ -83,7 +85,9 @@ inquirer.prompt ( confirm )
             else {
               //There are not enough items in stock to satisfy order. 
               // Print message and prompt user again.
-              console.log ("Insufficient Quantity!. Cannot complete order.\n\n"); 
+              console.log ("\n* * * * * * * * * * * * * * * * * * * * * * * * ");
+              console.log ("Insufficient Quantity!. Cannot complete order."); 
+              console.log ("* * * * * * * * * * * * * * * * * * * * * * * * \n");
               promptUser();
             }
           });
@@ -104,13 +108,31 @@ function promptUser() {
 var query = connection.query("SELECT id, product_name , price FROM PRODUCTS ORDER BY ID",'',
   function( err, res ) {
     if ( err ) throw err;
-    console.log ('----------------------------------------\n');
-    res.forEach ( function( row, index ) {
-      console.log (`${index + 1}) ${row.product_name}, $${row.price.toFixed(2)}`)
-    }); //End of res.forEach
-    console.log ('\n----------------------------------------\n');
 
-    //Then prompt the user
+    var data     = [];
+      var record   = ["Line", "Product Name", "Price"];
+      data.push(record); 
+
+      tblConfig = {
+        columns: {
+          2: {
+            alignment: 'right',
+          }
+        }
+      };
+
+      res.forEach ( function( row, index ) {
+        var record =  [];
+        record.push( index + 1 ); 
+        record.push( row.product_name ); 
+        record.push( row.price.toFixed(2) );
+        data.push(record);
+    }); //End of res.forEach
+    
+    output = table.table( data , tblConfig);
+    console.log( output );  
+    
+   //Then prompt the user
    inquirer.prompt([
    {
       type: 'input',
