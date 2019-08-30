@@ -90,7 +90,7 @@ schema.sql
   |
   + bamazonManager.js -- Application file for the Manager functionality of bamazon.
   |
-  + bamazonSupervidor.js  -- Application file for the Supervisor functionality of bamazon.
+  + bamazonSupervisor.js  -- Application file for the Supervisor functionality of bamazon.
   |
   + package-lock.json	-- Created by npm -init
   |
@@ -101,9 +101,9 @@ schema.sql
 
 ### Demo <a name="Demo"></a>
 
-Movies showing sample sessions for Bamazon can be accessed at:
-* <a href="https://engjoserobles-gmail.tinytake.com/tt/MzczMjc2M18xMTM2MTE5OQ" target="_blank">bamazonCustomer.js</a>
-* <a href="https://engjoserobles-gmail.tinytake.com/tt/MzczMjc4MV8xMTM2MTI5Mg" target="_blank"> bamazonManager.js </a>
+A movie showing the application being used is available at:
+* <a href="https://engjoserobles-gmail.tinytake.com/tt/MzczNTM2N18xMTM2ODk3OQ" target="_blank">Bamazon Demo</a>
+
 
 **NOTE**: 
 
